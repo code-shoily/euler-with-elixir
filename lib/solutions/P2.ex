@@ -11,16 +11,18 @@ defmodule EulerWithElixir.P2 do
   terms.
   """
   @limit 4_000_000
+  
+  defp fbs(x, y, xs, ll) when x >= ll, do: xs
+  defp fbs(x, y, xs, ll), do: fbs(y, x+y, [x+y|xs], ll)
 
-  defp fibonaccis_below(a, b, lst) when a >= @limit, do: lst
-  defp fibonaccis_below(a, b, lst) do
-    fibonaccis_below(b, a+b, [a+b|lst])
+  defp fibonaccis(limit \\ @limit) do
+    fbs(1, 2, [2, 1], limit)
   end
 
   def solution do
     import Enum
 
-    fibonaccis_below(1, 2, [2, 1])
+    fibonaccis()
       |> filter(&(0 == rem(&1, 2)))
       |> filter(&(@limit >= &1))
       |> reduce(&+/2)
