@@ -1,4 +1,6 @@
 defmodule EulerWithElixir.P6 do
+    import Enum
+
     @problem_description """
     The sum of the squares of the first ten natural numbers is,
     1^2 + 2^2 + ... + 10^2 = 385
@@ -12,8 +14,6 @@ defmodule EulerWithElixir.P6 do
     Find the difference between the sum of the squares of the first one hundred 
     natural numbers and the square of the sum.
     """
-    import Enum
-
     @range 1..100
 
     defp sum_of_squares(r) do
